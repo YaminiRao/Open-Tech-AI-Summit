@@ -1,0 +1,113 @@
+
+## Code Snippets 
+
+### Step 21 
+
+#### e) Template 
+
+``` <style>
+input[type=submit]{
+    background-color: rgb(85,150,230);
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    font-size: 15px;
+    border-radius: 10px;
+)
+input[type=text] {
+    width: 50em;  height: 3em;
+}
+</style>
+<script type="text/javascript">
+function clicked(address) {
+ var form = document.getElementById("imageform");
+ document.getElementById('imageurl').value = address.src;
+ form.submit();
+}
+</script>
+<h1>Welcome to the Watson Visual Recognition Demo on Node-RED</h1>
+ <h2>Click an Image </h2>
+ <form  action="{{req._parsedUrl.pathname}}" id="imageform">
+ <img src="http://visual-recognition-demo.ng.bluemix.net/images/samples/1.jpg" height='100'
+onclick="clicked(this)"/>
+ <img src="http://visual-recognition-demo.ng.bluemix.net/images/samples/2.jpg" height='100'
+onclick="clicked(this)"/>
+ <img src="http://visual-recognition-demo.ng.bluemix.net/images/samples/3.jpg" height='100'
+onclick="clicked(this)"/>
+ <img
+src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Queen_Elizabeth_II_March_2015.jpg/4
+55px-Queen_Elizabeth_II_March_2015.jpg" height='100' onclick="clicked(this)"/>
+ <h2>or paste an URL from the internet</h2>
+        <input type="text" name="imageurl" id="imageurl"/><br>
+        <input type="submit" value="Analyze"/>
+</form>
+```
+
+
+
+
+### Step 24 
+
+#### e) Template 
+
+``` <div align="center">
+    <form  action="{{req._parsedUrl.pathname}}">
+        <input type="submit" value="Try again"/>
+    </form>
+<h1>Node-RED Watson Visual Recognition output</h1> <p>Analyzed image: {{req.query.imageurl}}<br/><img src="{{req.query.imageurl}}" height='200'/></p> <p><b>Here are my results:</b></p> {{#result.images}} 
+        {{#classifiers}}
+            <table border="0">
+            <tr><td class=classifier colspan="2">{{classifier_id}}</td></tr>
+                <tr><td class="title">Class</td><td class="title">Score</td></tr>
+                {{#classes}}
+                <tr><td><b>{{class}}</b></td><td><i>{{score}}</i></td></tr>
+                {{/classes}}
+            </table>
+        {{/classifiers}}
+    {{/result.images}}
+</div>
+```
+
+
+
+#### f) Optional Styling at the top of the template 
+
+``` <style> h4 { 
+    text-align: center;
+    margin: 10px;
+}
+table {
+    width: 480px;
+    margin-top: 10px;
+}
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    background-color: #FFFFFF;
+    width: 50%;
+}
+.classifier {
+    background-color: rgb(85,150,230);
+    text-align: center;
+}
+.title {
+    background-color:LightGrey;
+}
+input[type=submit]{
+    background-color: rgb(85,150,230);
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    font-size: 15px;
+    border-radius: 10px;
+) </style> 
+```
+
+
